@@ -1,0 +1,314 @@
+<!-- prediction.html -->
+
+{%block content%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction ii</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styl1.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+
+  <style>
+    body {
+      overflow-x: hidden;
+      background-color: #83f253;
+    }
+
+    #sidebar {
+      min-width: 250px;
+      max-width: 250px;
+      min-height: 100vh;
+      margin-top: 0px;
+      background: #e1e1e1;
+      color: white;
+      transition: all 0.3s ease;
+     
+    }
+    
+
+    #sidebar a {
+      color: rgb(242, 240, 240,);
+      text-decoration: none;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font: 1em sans-serif;
+      font-size:25px;
+     
+      
+      
+    }
+
+    #sidebar .nav-link:hover {
+      border: 2px black solid;
+      border-radius: 5px;
+    }
+
+    #sidebar.collapsed {
+      margin-left: -250px;
+    }
+
+    #main-content {
+      transition: margin-left 0.3s ease;
+      margin-left: 250px;
+      padding: 20px;
+      display: flex;
+      
+      
+    }
+
+    #sidebar.collapsed + #main-content {
+      margin-left: 10px;
+    }
+    .row{
+      background-color: #f1f5f2;
+      width: 2000px;
+      height:100px;
+      margin-top: 20px;
+    }
+    
+    .toggle-btn {
+      position: fixed;
+      top: 25px;
+      left: 20px;
+      z-index: 1001;
+      height: 50px;
+      width: 50px;
+      font-size: 30px;
+      margin-bottom: 5px;
+	  
+    }
+	ul li a{
+		gap: 20px;
+
+	}
+  .col-5{
+    margin-top: 20px;
+    font-style: italic;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font: 'Times New Roman' ;
+    
+
+  }
+  .col-5 h1{
+    font-size: 40px;
+    font-weight: bolder;
+  }
+  .p-1{
+    margin-top: 20px;
+    color: #f1f5f2;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font: 'Times New Roman' ;
+    font-size: 40px;
+    margin-left: 20px;
+    
+  }
+  .p-2{
+    margin-top: 20px;
+    color: #050505;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font: 'Times New Roman' ;
+    font-size: 25px;
+    margin-left: 20px;
+    
+  }
+  .img-part{
+    height:400px;
+    width: 100%;
+    margin-top: 100px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 30px;
+    object-fit: cover;
+    overflow: hidden;
+    margin-left: 100px;
+  }
+  .content{
+    margin-left: 40px;
+    width:800px;
+  }
+  .content a{
+    margin-top: 100px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font: 'Times New Roman';
+    color: rgb(250, 4, 4);
+  }
+  
+  </style>
+</head>
+<body>
+
+<div class="row">
+  <div class="col col-1">
+	<!-- Toggle Button -->
+<button class="btn toggle-btn" onclick="toggleSidebar()"><strong>☰</strong></button>
+</div>
+<div class="col col-5"><h1>KnoWraT</h1></div>
+
+</div>
+
+
+<!-- Sidebar -->
+<div id="sidebar" class="position-fixed">
+  
+  <ul class="nav flex-column p-3">
+    <li class="active"><a class="nav-link" href="index" >🏠</a></li>
+    <li class="nav-item"><a class="nav-link" href="prediction">🔍 </a></li>
+    <li class="nav-item"><a class="nav-link" href="about">📚</a></li>
+    <li class="nav-item"><a class="nav-link" href="service">👩‍🔧</a></li>
+  </ul>
+</div>
+<div id="main-content">
+    
+    <div class="container" >
+      
+        <form class="prediction-form" id="pricePredictionForm" method="POST">
+          {%csrf_token%}
+            <h2>Get Your Instant Estimate</h2>
+            <div class="form">
+                <div class="form-group">
+                    <label for="address">Location</label>
+                    <select id="locationSelect" name="loc" required></select>
+                    
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label for="propertyType">Area Type</label>
+                    <select id="propertyType" name="prop" required>
+                        <option value="">Select type</option>
+                        <option value="Super built up Area">Super built up Area</option>
+                        <option value="Plot Area">Plot Area</option>
+                        <option value="Built Up Area">Built Up Area</option>
+                        <option value="Carpet">Carpet </option>
+                        
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bedrooms">Bedrooms</label>
+                    <input type="number" id="bedrooms" min="1" max="10" name="bed" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bathrooms">Bathrooms</label>
+                    <input type="number" id="bathrooms" min="1" max="10" step="1" name="bath" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sqft">Square Footage</label>
+                    <input type="number" id="sqft" min="500" name="sqrt" required>
+                </div>
+                <div class="form-group">
+                    <label for="parking">Parking</label>
+                    <select id="parking" name="park" required>
+                        <option value="">Select type</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                     
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="yearBuilt">Year Built</label>
+                    <input type="number" id="yearBuilt" min="2000" max="2023" name="year" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="Balcony">Balcony</label>
+                    <input type="number" id="lotSize" min="1" max="7" name="balcony" required>
+                </div>
+            </div>
+            
+            <button type="submit" name="result">Estimate </button>
+            
+        </form>
+        <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+    
+    </div>
+</div> 
+    <footer class="footer">
+        <div class="col col-12">
+            
+        </div>
+    </footer>
+  
+    <script>
+      
+        $(document).ready(function() {
+            $("#predictionForm").submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            $("#result").html(`
+                                <p>Location: ${response.location}</p>
+                                <p>Area Type: ${response.area_type}</p>
+                                <p>Price per Sq. Ft.: ₹${response.price_sqft}</p>
+                                <p>Total Price: ₹${response.total_price}</p>
+                            `);
+                        } else {
+                            $("#result").html(`Error: ${response.error}`);
+                        }
+                    },
+                    error: function() {
+                        $("#result").html("An error occurred. Please try again.");
+                    }
+                });
+            });
+        });
+    
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+            document.getElementById('main-content').classList.toggle('expanded');
+          }
+            
+        
+        const locations = [
+          "Select the Location","Adarsh Nagar", "Banashankari", "Basavanagudi", "BTM Layout", "CV Raman Nagar",
+          "Domlur", "Electronic City", "Fraser Town", "Gandhi Nagar", "Hebbal",
+          "HSR Layout", "Indiranagar", "Jayanagar", "JP Nagar", "Kalyan Nagar",
+          "Koramangala", "KR Puram", "Lingarajapuram", "Malleswaram", "Marathahalli",
+          "MG Road", "Nagarbhavi", "Rajajinagar", "RT Nagar", "Sadashivanagar",
+          "Sanjay Nagar", "Sarjapur Road", "Seshadripuram", "Shivaji Nagar", "Ulsoor",
+          "Vasanth Nagar", "Vijayanagar", "Whitefield", "Yelahanka", "Yeshwanthpur",
+          "Anekal", "Arekere", "Bannerghatta Road", "Bellandur", "Bommanahalli",
+          "Brookefield", "Chandra Layout", "Cooke Town", "Dasarahalli", "Devanahalli",
+          "Doddanekundi", "Ejipura", "Gottigere", "Hoodi", "Horamavu",
+          "Hosa Road", "ITPL", "Jakkur", "Jeevan Bima Nagar", "Kadugodi",
+          "Kammanahalli", "Kanakapura Road", "Kengeri", "Kudlu Gate", "Mahadevapura",
+          "Nagasandra", "Peenya", "Rajarajeshwari Nagar", "Sahakar Nagar", "Thubarahalli",
+          "Varthur", "Vidyaranyapura", "Banerghatta", "Begur Road", "Benson Town",
+          "Byappanahalli", "Chikkabanavara", "Girinagar", "Hennur", "HBR Layout",
+          "Kaggadasapura", "Kamakshipalya", "Konanakunte", "Lakshminarayana Pura", "Mico Layout",
+          "Nandini Layout", "Padmanabhanagar", "Raghuvanahalli", "RMV 2nd Stage", "Sampangi Rama Nagar",
+          "Sarakki", "Singasandra", "Subramanyapura", "Talaghattapura", "Thanisandra",
+          "TC Palya", "Ullal", "Uttarahalli", "Vidyanagar", "Vignana Nagar",
+          "West of Chord Road", "Yelachenahalli"
+        ];
+      
+        const select = document.getElementById("locationSelect");
+      
+        locations.forEach(location => {
+          const option = document.createElement("option");
+          option.value = location;
+          option.textContent = location;
+          select.appendChild(option);
+        });
+
+       
+      </script>
+</body>
+</html>
+
+{%endblock%}
+	
+

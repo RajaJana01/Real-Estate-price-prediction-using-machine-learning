@@ -1,0 +1,96 @@
+body{
+	background-color:darkblue ;
+
+}
+.log{
+	display: inline-flex;
+	text-align: center;
+	margin-left: 350px;
+	margin-top: 50px;
+
+}
+.frm{
+	width: 300px;
+	height:500px;
+	background-color: darkblue;
+	border: 2px solid white;
+	border-start-start-radius:30px ;
+	
+
+	
+}
+p{
+	padding: 50px;
+	margin-top: 40px;
+	color: white;
+	font-size: 20px;
+}
+
+form{
+	
+	color: darkblue;
+	margin-left: 50px;
+
+
+}
+h2{
+	text-align: center;
+}
+#user{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-left: 50px;
+
+}
+#pass{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-left: 65px;
+}
+#cpass{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+#mail{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-left: 47px;
+}
+#sbtn{
+	width:120px;
+	height: 30px;
+	border-radius: 5px;
+	margin-top: 30px;
+	margin-left: 130px;
+	color: darkblue;
+}
+
+
+
+.letter{
+	width: 400px;
+	height:500px;
+	background-color: white;
+	border-end-end-radius: 30px;
+	border: 2px solid white;
+	}
+.btn{
+	width:90px;
+	height: 30px;
+	
+	border-radius:5px;
+
+}
+h1{
+	margin-top: 60px;
+	color: white;
+	
+}

@@ -1,0 +1,150 @@
+{%block content%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    
+    <style>
+        body{
+	background-color:darkblue ;
+
+}
+.log{
+	display: inline-flex;
+	text-align: center;
+	margin-left: 350px;
+	margin-top: 50px;
+
+}
+.frm{
+	width: 300px;
+	height:500px;
+	background-color: darkblue;
+	border: 2px solid white;
+	border-start-start-radius:30px ;
+	
+
+	
+}
+p{
+	padding: 50px;
+	margin-top: 20px;
+	color: white;
+	font-size: 20px;
+}
+
+form{
+	
+	color: darkblue;
+	margin-left: 20px;
+
+
+}
+h2{
+	text-align: center;
+}
+#user{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-left: 50px;
+
+}
+#pass{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-left: 50px;
+}
+#cpass{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+    margin-left: 50px;
+}
+#mail{
+	width:220px;
+	height: 40px;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-left: 60px;
+}
+#sbtn{
+	width:120px;
+	height: 30px;
+	border-radius: 5px;
+	margin-top: 30px;
+	margin-left: 130px;
+	color: darkblue;
+}
+
+
+
+.letter{
+	width: 400px;
+	height:500px;
+	background-color: white;
+	border-end-end-radius: 30px;
+	border: 2px solid white;
+	}
+.btn{
+	width:90px;
+	height: 30px;
+
+	border-radius:5px;
+
+}
+h1{
+	margin-top: 60px;
+	color: white;
+	
+}
+label{
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+   
+    <div class= "log">
+        <div class="frm">
+        <h1>Welcome Friends,</h1>
+        <p>If you already have a account, go to login... </p>
+        <p>Click the button......!</p>
+        <button class="btn"><a href="login">Login</a></button>
+        </div> 
+    <div class="letter">
+        <form id="login" method="POST">
+            <h2>Register the Details</h2>
+	    
+            {% csrf_token %}
+	    <label for="username">Username:</label>
+        <input type="text" id="user" name="username" placeholder="Username" required><br>
+        
+        <label for="Email">E-mail:</label>
+        <input type="Email" id="mail" name="email" placeholder="email" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="pass" name="password" placeholder="Password" required><br>
+        <label for="cpassword">Confirm:</label>
+        <input type="password" id="cpass" name="cpassword" placeholder="confirm password" required><br>
+        
+        
+        <button type="submit" id="sbtn">Register</button>
+    </form>
+    </div>
+    
+    </div>
+</body>
+{% for i in messages %}
+<script>alert("{{i}}")</script>
+{%endfor%}
+</html>
+{%endblock%}

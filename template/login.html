@@ -1,0 +1,37 @@
+
+{%block content%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+</head>
+<body>
+    
+    <div class= "log">
+    <div class="letter">
+        <form id="login" method="POST">
+            {%csrf_token%}
+            <h2>Login</h2>
+        <label for="username">Username:</label><br>
+        <input type="text" id="user" name="username" placeholder="Username" required><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="pass" name="password" placeholder="Password" required><br>
+        
+        
+        <button type="submit" id="sbtn">Login</button>
+    </form>
+    </div>
+    <div class="frm">
+        <h1>Welcome,{{username}}</h1>
+        <p>If you don't have an account.<br>Go and Register to create new account</p>
+        <button class="btn"><a href="register">Register</a></button>
+    </div>
+    </div>
+</body>
+</html>
+{%endblock%}
